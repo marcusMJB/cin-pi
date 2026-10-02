@@ -136,7 +136,8 @@ int main() {
 
     printf("Colecao do Cariani: ");
     for (int i = 0; i < cariani_tam; i++) {
-        printf("%s", cariani_nomes[i]);
+        printf("%s", carian
+        i_nomes[i]);
         if (i < cariani_tam - 1) printf(", ");
     }
 
