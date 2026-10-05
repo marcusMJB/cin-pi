@@ -63,7 +63,7 @@ void printStudio(Jogos *vet, int t, char *studio){
         }
     }
     if (contador > 0) {
-        printf("Tenho %d jogos || %s\n", contador, studio);
+        printf("Tenho %d jogos || %s.\n", contador, studio);
     } else {
         printf("Nenhum jogo tem esse parâmetro Sr Sr Wilson.\n");
     }
@@ -81,7 +81,7 @@ void printConsole(Jogos *vet, int t, char *console){
         }
     }
     if (contador > 0) {
-        printf("Tenho %d jogos || %s\n", contador, console);
+        printf("Tenho %d jogos || %s.\n", contador, console);
     } else {
         printf("Nenhum jogo tem esse parâmetro Sr Sr Wilson.\n");
     }
@@ -116,11 +116,11 @@ int main(){
     for (int i = 0; i < numeroJogos; i++)
     {
         if(vetjogos[i].notas > 7){
-            printf("AWESOME! Mais um GOTY pra minha coleção!");
+            printf("AWESOME! Mais um GOTY pra minha coleção!\n");
         }
 
         else if(vetjogos[i].notas < 4){
-            printf("Era melhor jogar mais um jogo de Mahjong.");
+            printf("Era melhor jogar mais um jogo de Mahjong.\n");
         }
     }
     
