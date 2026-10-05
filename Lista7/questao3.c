@@ -32,6 +32,8 @@ void subrotinaDefesa(Mecha *m, int slot, int input, int *output){
     if(*output < 0){
         *output = 0;
     }
+
+    printf("-> [DEFESA] %s | Dano final sofrido: %d\n", m->sistemas[slot].nome, *output);
 }
 
 void subrotinaRecupera(Mecha *m, int slot, int input, int *output){
@@ -40,7 +42,9 @@ void subrotinaRecupera(Mecha *m, int slot, int input, int *output){
     int atrib2 = m->sistemas[slot].atrib2;
 
     *output = atrib1 + (slot * atrib2);
-    m->energia_atual += *output;   
+    m->energia_atual += *output;  
+    
+    printf("-> [UTILIDADE] %s | Energia atual: %d\n", m->sistemas[slot].nome, m->energia_atual);
 }
 
 void subrotinaAtaque(Mecha *m, int slot, int input, int *output){
@@ -59,6 +63,8 @@ void subrotinaAtaque(Mecha *m, int slot, int input, int *output){
         }
 
         m->energia_atual -= atrib2;
+
+        printf("-> [ATAQUE] %s | Dano causado: %d | Energia restante: %d\n", m->sistemas[slot].nome, *output, m->energia_atual);
     }
 }
 
@@ -104,6 +110,8 @@ int main(){
         scanf("%d", &vetMechas[i]->valor_wintermute);
     }
     
+    printf("[RELATORIO DE MISSÃO: OPERAÇÃO LANÇA DE NETUNO]\n");
+
     for (int i = 0; i < quantidadeMecha; i++)
     {
         int dano = vetMechas[i]->valor_wintermute;
@@ -131,11 +139,12 @@ int main(){
                 vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &dano);
             }
         }
-             
+           
+        printf("ENERGIA FINAL: %d", vetMechas[i]->energia_atual);
+        printf("-----------------------------------------");
     }
     
-    printf("[RELATORIO DE MISSÃO: OPERAÇÃO LANÇA DE NETUNO]\n");
-    printf()
+    printf("Esquadrao pronto para o combate.");
 
     for (int i = 0; i < quantidadeMecha; i++)
     {
