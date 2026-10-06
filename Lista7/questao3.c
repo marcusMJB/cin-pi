@@ -54,6 +54,7 @@ void subrotinaAtaque(Mecha *m, int slot, int input, int *output){
 
     if(m->energia_atual < atrib2){
         *output = 0;
+        printf("-> [ATAQUE] %s | Energia insuficiente!\n", m->sistemas[slot].nome);
     }
     else{
         *output = atrib1 + m->energia_atual + slot - input;
@@ -68,6 +69,21 @@ void subrotinaAtaque(Mecha *m, int slot, int input, int *output){
     }
 }
 
+void ordenar(Mecha **vet, int qtd){
+    for (int i = 0; i < qtd - 1; i++)
+    {
+        for (int j = 0; j < qtd - i - 1; j++)
+        {
+            if(vet[j]->id > vet[j+1]->id){
+                Mecha *aux = vet[j];
+                vet[j] = vet[j+1];
+                vet[j+1] = aux;
+            }
+        }
+        
+    }
+    
+}
 
 int main(){
 
@@ -90,7 +106,7 @@ int main(){
         vetMechas[i]->energia_atual = energiaInicial;
         vetMechas[i]->num_sistemas = qtdSistemas;
 
-        for (int j = 0; i < qtdSistemas; j++)
+        for (int j = 0; j < qtdSistemas; j++)
         {
             char tipo;
 
@@ -110,17 +126,22 @@ int main(){
         scanf("%d", &vetMechas[i]->valor_wintermute);
     }
     
+    ordenar(vetMechas, quantidadeMecha);
+
     printf("[RELATORIO DE MISSÃO: OPERAÇÃO LANÇA DE NETUNO]\n");
 
     for (int i = 0; i < quantidadeMecha; i++)
     {
         int dano = vetMechas[i]->valor_wintermute;
+        int resultado = 0;
+
+        printf("ID: %d | MECHA: %s | ENERGIA: %d\n", vetMechas[i]->id, vetMechas[i]->modelo, vetMechas[i]->energia_atual);
 
         //defesa
         for (int j = 0; j < vetMechas[i]->num_sistemas; j++)
         {
             if(vetMechas[i]->sistemas[j].subrotina == subrotinaDefesa){
-                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &dano);
+                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &resultado);
             }
         }
 
@@ -128,7 +149,7 @@ int main(){
         for (int j = 0; j < vetMechas[i]->num_sistemas; j++)
         {
             if(vetMechas[i]->sistemas[j].subrotina == subrotinaRecupera){
-                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &dano);
+                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &resultado);
             }
         }
 
@@ -136,12 +157,12 @@ int main(){
         for (int j = 0; j < vetMechas[i]->num_sistemas; j++)
         {
             if(vetMechas[i]->sistemas[j].subrotina == subrotinaAtaque){
-                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &dano);
+                vetMechas[i]->sistemas[j].subrotina (vetMechas[i], j, dano, &resultado);
             }
         }
            
-        printf("ENERGIA FINAL: %d", vetMechas[i]->energia_atual);
-        printf("-----------------------------------------");
+        printf("ENERGIA FINAL: %d\n", vetMechas[i]->energia_atual);
+        printf("-----------------------------------------\n");
     }
     
     printf("Esquadrao pronto para o combate.");
