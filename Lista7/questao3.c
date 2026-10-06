@@ -70,6 +70,7 @@ void subrotinaAtaque(Mecha *m, int slot, int input, int *output){
 }
 
 void ordenar(Mecha **vet, int qtd){
+
     for (int i = 0; i < qtd - 1; i++)
     {
         for (int j = 0; j < qtd - i - 1; j++)
