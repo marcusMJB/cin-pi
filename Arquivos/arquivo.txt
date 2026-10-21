@@ -1,0 +1,17 @@
+Arquivos em C
+
+FILE - tipo *arqv - nome da variavel
+
+fopen("nome do arquivo", "Ler ou escrever") - Abrir arquivo/ Ler - "w" e escrever - "r"
+
+fprintf - exibi no arquivo 
+parâmetros - ponteiro do arquivo, tipo da informação, de onde vem o nome
+ex: fprintf(arqv, %s, lista);
+
+fclose(arqv)  fecha o arquivo
+
+Se não adicionar um diretório ao definir o nome do arquivo, o arquivo será salvo na pasta do projeto
+
+fscanf - ler do arquivo
+parâmetros - ponteiro do arquivo, tipo da informação, onde será salvo
+ex: fscanf(arqv, %s, &lista);
