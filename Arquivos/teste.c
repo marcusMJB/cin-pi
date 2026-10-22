@@ -68,6 +68,22 @@ void salvarArquivo(){
     }
 }
 
+void salvarArquivos2(){
+
+    FILE *arquivo = fopen("lista2.txt", "wb");
+
+    if(arquivo != NULL){
+        fprintf(arquivo, "%d\n", quant);
+        fwrite(lista, sizeof(Pessoa), quant, arquivo);  
+        fclose(arquivo);
+    }
+
+    else{
+        printf("Erro ao abrir o arquivo!");
+    }
+
+}
+
 //lendo do arquivo
 void lerArquivo(){
 
@@ -94,6 +110,20 @@ void lerArquivo(){
     }
 }
 
+void lerArquivos2(){
+
+    FILE *arquivo = fopen("lista2.txt", "rb");
+
+    if(arquivo != NULL){
+        fscanf(arquivo, "%d\n", &quant);
+        fread(lista, sizeof(Pessoa), quant, arquivo);
+        fclose(arquivo);
+    }
+    else{
+        printf("Erro ao abrir o arquivo");
+    }
+}
+
 int main(){
 
     int operacao;
@@ -101,7 +131,8 @@ int main(){
     do{
 
         printf("\n");
-        printf("Escolha a operacao:\n0- Sair\n1- Cadastrar\n2- Imprimir\n3- Salvar no arquivo\n4- Ler do arquivo\n");
+        printf("Escolha a operacao:\n0- Sair\n1- Cadastrar\n2- Imprimir\n3- Salvar no arquivo texto\n4- Ler do arquivo texto\n");
+        printf("5- Salvar no arquivo binario\n6- Ler do arquivo binario\n");
         scanf("%d", &operacao);
 
         switch (operacao){
@@ -125,6 +156,14 @@ int main(){
         case 4:
             lerArquivo();
             break;
+
+        case 5:
+            salvarArquivos2();
+            break;
+            
+        case 6:
+            lerArquivos2();
+            break;    
         
         default:
             printf("Operacao invalida\n\n");

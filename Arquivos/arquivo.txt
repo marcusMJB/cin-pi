@@ -15,3 +15,22 @@ Se não adicionar um diretório ao definir o nome do arquivo, o arquivo será sa
 fscanf - ler do arquivo
 parâmetros - ponteiro do arquivo, tipo da informação, onde será salvo
 ex: fscanf(arqv, %s, &lista);
+
+fwrite - escrever para arquivos binário
+parâmetros - vetor com os dados, tamanho do objeto que quer escrever no aruqivo, 
+quantos objetos serão escritos, em qual arquivo vai escrever
+
+fread - ler para arquivos em binário
+parâmetros - onde armazenar os dados lidos, tamanho de um objeto, quantos dados, em qual arquivo 
+
+Modos de abertura de arquivos:
+w -> escrita
+r -> leitura
+a -> anexar
+r+ -> leitura e escrita
+w+ -> leitura e escrita (apaga o conteúdo caso o arquivo exista)
+a+ -> leitura e escrita (adiciona ao final do arquivo)
+
+rwind(ponteiro) -> faz o ponteiro apontar para o inicio do arquivo
+
+feof(ponteiro) - retorna verdadeiro se chegou no fim do arquivo
