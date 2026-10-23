@@ -28,7 +28,7 @@ int cadastrarPessoa(){
         lista[quant] = p;
         quant++;
 
-        return 1;
+        return 1;scanf("%c");
     }
     else{
         printf("O vetor esta cheio\n\n");
