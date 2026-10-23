@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     int matricula;
@@ -17,29 +17,25 @@ void cadastrarAluno(char nomeArquivo[]){
     if(arquivo != NULL){
 
         printf("Matricula do aluno: ");
-        scanf("%d", &aluno.matricula);
-        fprintf(arquivo, "%s: ", "Matricula");
+        scanf("%d", &aluno.matricula);       
         fprintf(arquivo, "%d\n", aluno.matricula);
         getchar();
 
         printf("Nome do aluno: ");
         fgets(aluno.nome, 50, stdin);
-        fprintf(arquivo, "%s: ", "Nome");
+        aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
         fprintf(arquivo, "%s\n", aluno.nome);
 
         printf("Nota 1: ");
         scanf("%f", &aluno.nota1);
-        fprintf(arquivo, "%s: ", "Nota 1");
         fprintf(arquivo, "%f\n", aluno.nota1);
 
 
         printf("Nota 2: ");
         scanf("%f", &aluno.nota2);
-        fprintf(arquivo, "%s: ", "Nota 2");
         fprintf(arquivo, "%f\n", aluno.nota2);
 
         aluno.media = (aluno.nota1 + aluno.nota2)/2;
-        fprintf(arquivo, "%s: ", "Media");
         fprintf(arquivo, "%.2f\n", aluno.media);
 
         fclose(arquivo);
@@ -57,22 +53,21 @@ void exibirAlunos(char nomeArquivo[]){
 
     if(arquivo != NULL){
 
-        while(feof(arquivo)){
+        while(fscanf(arquivo, "%d\n", &aluno.matricula) == 1){
 
-            printf("Matricula: ");
-            fscanf(arquivo, "%d\n", &aluno.matricula);
+            printf("Matricula: %d\n", aluno.matricula);
 
-            printf("Nome: ");
             fgets(aluno.nome, 50, arquivo);
+            printf("Nome: %s", aluno.nome);
 
-            printf("Nota 1: ");
             fscanf(arquivo, "%f\n", &aluno.nota1);
+            printf("Nota 1: %.2f\t", aluno.nota1);
 
-            printf("Nota 2: ");
             fscanf(arquivo, "%f\n", &aluno.nota2);
+            printf("Nota 2: %.2f\t", aluno.nota2);
 
-            printf("Media: ");
             fscanf(arquivo, "%f\n", &aluno.media);
+            printf("Media: %.2f\n\n", aluno.media);
         }
 
         fclose(arquivo);
@@ -86,11 +81,40 @@ void relatorioAprovados(char nomeArquivo[], char arquivoAprovados[]){
 
     FILE *arquivo = fopen(nomeArquivo, "r");
     FILE *arquivoApr = fopen(arquivoAprovados, "w");
-     
+    Aluno aluno; 
+
     if(arquivo != NULL){
 
+        if(arquivoApr != NULL){
 
-    }
+            while(fscanf(arquivo, "%d\n", &aluno.matricula) == 1){
+
+                fgets(aluno.nome, 50, arquivo);
+                aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
+                fscanf(arquivo, "%f\n", &aluno.nota1);
+                fscanf(arquivo, "%f\n", &aluno.nota2);
+                fscanf(arquivo, "%f\n", &aluno.media);
+
+                if(aluno.media >= 7){
+
+                    fprintf(arquivoApr, "%d\n", aluno.matricula);
+                    fprintf(arquivoApr, "%s\n", aluno.nome);
+                    fprintf(arquivoApr, "%f\n", aluno.nota1);
+                    fprintf(arquivoApr, "%f\n", aluno.nota2);
+                    fprintf(arquivoApr, "%f\n", aluno.media);
+
+                }
+            }
+
+            
+            fclose(arquivoApr);
+        }
+
+        else{
+            printf("\nErro ao abrir o arquivo!\n");
+        }
+        fclose(arquivo);
+    }   
 
     else{
         printf("\nErro ao abrir o arquivo!\n");
