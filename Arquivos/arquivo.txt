@@ -23,7 +23,7 @@ quantos objetos serão escritos, em qual arquivo vai escrever
 fread - ler para arquivos em binário
 parâmetros - onde armazenar os dados lidos, tamanho de um objeto, quantos dados, em qual arquivo 
 
-Modos de abertura de arquivos:
+Modos de abertura de arquivos texto:
 w -> escrita
 r -> leitura
 a -> anexar
@@ -31,6 +31,28 @@ r+ -> leitura e escrita
 w+ -> leitura e escrita (apaga o conteúdo caso o arquivo exista)
 a+ -> leitura e escrita (adiciona ao final do arquivo)
 
+Modos de abertura de aruqivos binários:
+wb -> escrita
+rb -> leitura
+ab -> anexar
+rb+ -> leitura e escrita
+wb+ -> leitura e escrita (apaga o conteúdo caso o arquivo exista)
+ab+ -> leitura e escrita (adiciona ao final do arquivo)
+
 rwind(ponteiro) -> faz o ponteiro apontar para o inicio do arquivo
 
 feof(ponteiro) - retorna verdadeiro se chegou no fim do arquivo
+
+Em arquivos binários, a escrita ocorre sempre em blocos de bytes de mesmo tamanho.
+
+int fseek(FILE *stream, long offset, int origin);
+
+stream: O ponteiro para o ficheiro aberto (FILE *).
+
+offset: A quantidade de bytes a deslocar (positivo avança, negativo recua).
+
+origin: A referência a partir da qual o deslocamento é calculado:
+
+SEEK_SET: Início do ficheiro.
+SEEK_CUR: Posição atual do cursor.
+SEEK_END: Fim do ficheiro.

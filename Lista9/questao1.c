@@ -27,15 +27,15 @@ int main(){
     fprintf(arquivoEscrita, "=== RELATORIO DE REQUISICOES ===\n");
     fprintf(arquivoEscrita, "Total de requisicoes: %d\n", numeroRequisicao);
 
-    char endpoint[51];
+    char endpoint[50];
     int codigo, tempo;
     int sucesso = 0, redirecionamento = 0, erroCliente = 0, erroServidor = 0, somaTempo = 0, maiorTempo = 0;
     double mediaTempo = 0.0, taxaErro = 0.0;
-    char maiorendpoint[51];
+    char maiorendpoint[50];
 
     for(int i = 0; i < numeroRequisicao; i++){
         
-        fscanf(arquivoLeitura, "%50s %d %d", endpoint, &codigo, &tempo);
+        fscanf(arquivoLeitura, "%49s %d %d", endpoint, &codigo, &tempo);
 
         if(codigo >= 200 && codigo <= 299){
             sucesso++;
