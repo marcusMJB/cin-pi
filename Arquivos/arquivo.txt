@@ -2,7 +2,7 @@ Arquivos em C
 
 FILE - tipo *arqv - nome da variavel
 
-fopen("nome do arquivo", "Ler ou escrever") - Abrir arquivo/ Ler - "w" e escrever - "r"
+fopen("nome do arquivo", "Ler ou escrever") - Abrir arquivo/ escrever - "w" e ler - "r"
 
 fprintf - exibi no arquivo 
 parâmetros - ponteiro do arquivo, tipo da informação, de onde vem o nome

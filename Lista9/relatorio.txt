@@ -1,0 +1,10 @@
+=== RELATORIO DE REQUISICOES ===
+Total de requisicoes: 5
+Sucesso (2xx): 3
+Redirecionamento (3xx): 0
+Erro de cliente (4xx): 1
+Erro de servidor (5xx): 1
+Tempo medio de resposta: 154.20 ms
+Mais lenta: /api/pagamento (480 ms)
+Taxa de erro: 40.00%
+STATUS: CRITICO

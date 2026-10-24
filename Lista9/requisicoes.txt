@@ -1,0 +1,6 @@
+5 
+/api/login 200 120 
+/api/produtos 200 95 
+/api/pagamento 500 480 
+/api/login 404 30 
+/home 200 46
